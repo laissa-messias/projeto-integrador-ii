@@ -1,0 +1,66 @@
+<div class="d-flex flex-column min-vh-100">
+    <app-main-header></app-main-header>
+
+    <section class="container py-5">
+        <div class="d-flex align-items-center justify-content-between my-5">
+            <h1 class="text-light fw-bold">Listagem de Solicitações</h1>
+            <a [routerLink]="['/home']" class="link-primary link-underline-opacity-0">Voltar</a>
+        </div>
+
+        <div class="bg-tertiary rounded mb-4 p-3">
+          <ul class="nav nav-underline">
+            <li class="nav-item">
+              <a class="nav-link" [ngClass]="{'active': status === 99}" (click)="filterList(99)" role="button">TODOS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [ngClass]="{'active': status === 11}" (click)="filterList(11)"  role="button">EM ANÁLISE</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [ngClass]="{'active': status === 0}" (click)="filterList(0)" role="button">APROVADO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [ngClass]="{'active': status === 1}" (click)="filterList(1)" role="button">DESENVOLVIMENTO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [ngClass]="{'active': status === 2}" (click)="filterList(2)"  role="button">NÃO APROVADO</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  [ngClass]="{'active': status === 3}" (click)="filterList(3)" role="button">EM TESTE</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link" [ngClass]="{'active': status === 4}" (click)="filterList(4)" role="button">FINALIZADO</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-3">
+            <div class="table-responsive">
+                <table class="table table-rounded align-middle">
+                    <thead>
+                        <tr>
+                          <th scope="col">Código</th>
+                          <th scope="col">Lançamento</th>
+                          <th scope="col">Assunto</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Valor</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-group-divider">
+                        <tr *ngIf="loading; else list" >
+                          <th colspan="5" class="text-center p-5"><app-loading-spinner></app-loading-spinner></th>
+                        </tr>
+                        <ng-template #list>
+                          <tr *ngFor="let request of requests">
+                            <td>{{request.id}}</td>
+                            <td>{{request.lancamento}}</td>
+                            <td>{{request.assunto}}</td>
+                            <th><span [ngClass]="getStatusColor(request.status)">{{request.status}}</span></th>
+                            <td>{{request.valor}}</td>
+                          </tr>                 
+                        </ng-template>
+                        </tbody>
+                </table>
+              </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,13 @@
+:host {
+    .upload-area {
+        background-color: rgba(var(--color-secondary-rgb), 0.1);
+        border: 1px dashed var(--color-secondary);
+        color: var(--color-secondary);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &.dragging {
+            background-color: rgba(var(--color-secondary-rgb), 0.2);
+        }
+    }
+}

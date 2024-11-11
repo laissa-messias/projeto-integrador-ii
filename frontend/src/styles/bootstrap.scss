@@ -1,0 +1,26 @@
+$theme-colors: (
+  "primary": $main-yellow,
+  "secondary": $main-blue,
+  "tertiary": $secondary-blue,
+  "dark": $dark,
+  "gray-light": $gray-light,
+  "light": $light,
+  "success": $success,
+  "transparent": transparent,
+);
+
+$primary: $main-blue;
+
+// Table
+$table-cell-padding-y: 1.5rem;
+$table-cell-padding-x: 1.5rem;
+
+$table-border-color: $gray-light;
+$table-border-width: 1px;
+
+//Navs
+$nav-link-color: $light;
+$nav-link-hover-color: $light;
+$nav-underline-link-active-color: $light;
+
+@import "bootstrap/scss/bootstrap";

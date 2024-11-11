@@ -1,0 +1,10 @@
+.table-rounded {
+    border-radius: 0.25rem;
+    overflow: hidden;
+  
+    & > :not(thead) > * > * {
+      border-bottom-width: 0px;
+      border-top-width: 1px;
+    }
+  }
+  

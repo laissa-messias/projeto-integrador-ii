@@ -1,0 +1,22 @@
+@import "variables";
+@import "reset";
+@import "bootstrap";
+@import 'ngx-toastr/toastr';
+@import "table";
+
+:root {
+    --color-primary: #{$main-yellow};
+    --color-secondary: #{$main-blue};
+    --color-dark: #{$dark};
+    --color-gray-light: #{$gray-light};
+    --color-light: #{$light};
+}
+
+body {
+    background-color: var(--color-secondary);
+}
+
+.logo {
+    max-width: 145px;
+    height: auto;
+}
