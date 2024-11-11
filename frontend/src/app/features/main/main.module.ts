@@ -8,6 +8,8 @@ import { RequestListComponent } from './request-list/request-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RequestInsertComponent } from './request-insert/request-insert.component';
+import { RequestDetailsComponent } from './request-details/request-details.component';
+import { SystemReleaseComponent } from './system-release/system-release.component';
 
 
 
@@ -16,7 +18,9 @@ import { RequestInsertComponent } from './request-insert/request-insert.componen
     LoginComponent,
     HomeComponent,
     RequestListComponent,
-    RequestInsertComponent
+    RequestInsertComponent,
+    RequestDetailsComponent,
+    SystemReleaseComponent
   ],
   imports: [
     CommonModule,

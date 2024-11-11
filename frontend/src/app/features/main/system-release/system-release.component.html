@@ -1,0 +1,46 @@
+<div class="d-flex flex-column min-vh-100">
+    <app-main-header></app-main-header>
+
+    <section class="container py-5">
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="d-flex align-items-center justify-content-between my-5">
+                    <h1 class="text-light fw-bold">Liberação de Máquina</h1>
+                    <a [routerLink]="['/home']" class="link-primary link-underline-opacity-0">Voltar</a>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center p-5" *ngIf="loading; else formContainer">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                        <ng-template #formContainer>
+                            <form [formGroup]="form" (ngSubmit)="submitRelease()" class="d-flex flex-column gap-3 p-4" focus-invalid>
+                                <div class="form-floating">
+                                    <select class="form-select" formControlName="sis" id="sis"  form-field-check-invalid>
+                                        <option value="" selected>SELECIONE</option>
+                                        <option *ngFor="let system of systems" [value]="system.codigo">
+                                            {{system.nome}}
+                                        </option>
+                                    </select>
+                                    <label for="sis">Sistema</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="chave" formControlName="chave"  form-field-check-invalid
+                                        placeholder="Chave para liberação">
+                                    <label for="chave">Chave para liberação</label>
+
+                                </div>
+
+                               
+
+                                <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg">Lançar</button>
+                            </form>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

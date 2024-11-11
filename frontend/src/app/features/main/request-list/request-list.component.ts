@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../../../services/requests.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class RequestListComponent implements OnInit {
   status: number = 99;
   loading: boolean = true;
 
-  constructor(private requestsService: RequestsService, private toast: ToastrService) { }
+  constructor(private requestsService: RequestsService, private toast: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
    this.getList(this.status)
@@ -57,5 +58,9 @@ export class RequestListComponent implements OnInit {
       default:
          return 'text-secondary'
     }
+  }
+
+  detailsRedirect(id: string):void {
+    this.router.navigate(['/request-details', id])
   }
 }

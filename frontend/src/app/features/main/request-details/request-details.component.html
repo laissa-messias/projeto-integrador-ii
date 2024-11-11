@@ -1,0 +1,58 @@
+<div class="d-flex flex-column min-vh-100">
+    <app-main-header></app-main-header>
+
+    <section class="container py-5">
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="d-flex align-items-center justify-content-between my-5">
+                    <h1 class="text-light fw-bold">Detalhe da Solicitação</h1>
+                    <a [routerLink]="['/request-list']" class="link-primary link-underline-opacity-0">Voltar</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center p-5" *ngIf="loading; else detailsContainer">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                        <ng-template #detailsContainer>
+                            <div class="mb-4">
+                                <p>ID da Solicitação</p>
+                                <h5>{{request?.des_codigo || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Data Solicitação</p>
+                                <h5>{{request?.des_lancamento || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Solicitado por/Contato</p>
+                                <h5>{{request?.des_contato || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Status</p>
+                                <h5>{{request?.des_status || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Assunto</p>
+                                <h5>{{request?.des_motivo || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Prazo</p>
+                                <h5>{{request?.des_prazo || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Valor</p>
+                                <h5>{{request?.des_valor || '-'}}</h5>
+                            </div>
+                            <div class="mb-4">
+                                <p>Descrição da Solicitação</p>
+                                <h5>{{request?.des_descricao || '-'}}</h5>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

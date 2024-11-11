@@ -3,6 +3,7 @@
 @import "bootstrap";
 @import 'ngx-toastr/toastr';
 @import "table";
+@import "typography";
 
 :root {
     --color-primary: #{$main-yellow};
@@ -14,9 +15,15 @@
 
 body {
     background-color: var(--color-secondary);
+    font-size: 100%;
 }
 
 .logo {
     max-width: 145px;
     height: auto;
+}
+
+.btn-link {
+    font-weight: 700;
+    text-decoration: none;
 }

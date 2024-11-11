@@ -35,7 +35,7 @@
 
         <div class="bg-white rounded-3">
             <div class="table-responsive">
-                <table class="table table-rounded align-middle">
+                <table class="table table-hover table-rounded align-middle">
                     <thead>
                         <tr>
                           <th scope="col">Código</th>
@@ -50,7 +50,7 @@
                           <th colspan="5" class="text-center p-5"><app-loading-spinner></app-loading-spinner></th>
                         </tr>
                         <ng-template #list>
-                          <tr *ngFor="let request of requests">
+                          <tr role="button" *ngFor="let request of requests" (click)="detailsRedirect(request.id)">
                             <td>{{request.id}}</td>
                             <td>{{request.lancamento}}</td>
                             <td>{{request.assunto}}</td>

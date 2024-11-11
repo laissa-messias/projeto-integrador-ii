@@ -1,13 +1,5 @@
 <div class="d-flex flex-column min-vh-100">
-    <header class="bg-secondary p-3">
-        <div class="d-flex justify-content-between align-items-center">
-            <img class="img-fluid logo" src="assets/logo-1.png" alt="Simbolus Logo" />
-            <div>
-                <button>A+</button>
-                <button>A-</button>
-            </div>
-        </div>
-    </header>
+    <app-main-header></app-main-header>
 
     <section class="container py-5 my-auto">
         <div class="row justify-content-center mb-5">
@@ -16,9 +8,16 @@
                     <div class="text-center border-bottom p-4">
                         <h2 class="text-secondary"><b>Opções</b></h2>
                     </div>
-                    <a class="btn btn-link">Lançar Solicitação de Serviço</a>
+                    <div class="d-flex flex-column gap-2 py-3">
+                        <a [routerLink]="['/request-insert']" class="btn btn-link btn-lg">Lançar Solicitação de Serviço</a>
+                        <a [routerLink]="['/request-list']" class="btn btn-link btn-lg">Listar solicitações</a>
+                        <a [routerLink]="['/realease']" class="btn btn-link btn-lg">Liberação de Acesso ao Sistema</a>
+                        <a (click)="logout()" class="btn btn-link btn-lg" role="button">Sair do sistema</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <app-main-footer></app-main-footer>
 </div>

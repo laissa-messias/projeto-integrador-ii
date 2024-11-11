@@ -11,49 +11,60 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <form class="d-flex flex-column gap-3 p-4">
-                            <div class="form-floating">
-                                <select class="form-select" id="sis">
-                                    <option selected>SELECIONE</option>
-                                </select>
-                                <label for="sis">Sistema</label>
-                            </div>
+                        <div class="text-center p-5" *ngIf="loading; else formContainer">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                        <ng-template #formContainer>
+                            <form [formGroup]="form" (ngSubmit)="submitRequest()" class="d-flex flex-column gap-3 p-4" focus-invalid>
+                                <div class="form-floating">
+                                    <select class="form-select" formControlName="sis" id="sis"  form-field-check-invalid>
+                                        <option value="" selected>SELECIONE</option>
+                                        <option *ngFor="let system of systems" [value]="system.codigo">
+                                            {{system.nome}}
+                                        </option>
+                                    </select>
+                                    <label for="sis">Sistema</label>
+                                </div>
 
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="contato" formControlName="contato"
-                                    placeholder="Solicitante/Contato">
-                                <label for="contato">Solicitante/Contato</label>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="contato" formControlName="contato"  form-field-check-invalid
+                                        placeholder="Solicitante/Contato">
+                                    <label for="contato">Solicitante/Contato</label>
 
-                            </div>
+                                </div>
 
-                            <div class="form-floating">
-                                <select class="form-select" id="tipo">
-                                    <option value="CORREÇÃO">CORREÇÃO</option>
-                                    <option value="CUSTOMIZAÇÃO">CUSTOMIZAÇÃO</option>
-                                    <option value="VISITA TÉCNICA">VISITA TÉCNICA</option>
-                                    <option value="TREINAMENTO ON-LINE">
-                                        TREINAMENTO ON-LINE
-                                    </option>
-                                    <option value="TREINAMENTO IN-LOCO">
-                                        TREINAMENTO IN-LOCO
-                                    </option>
-                                    <option value="SUPORTE/DUVIDA">SUPORTE/DUVIDA</option>
-                                    <option value="NOVO MÓDULO">NOVO MÓDULO</option>
-                                </select>
-                                <label for="tipo">Tipo</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" placeholder="Escreva sua solicitação detalhada" id="obs"
-                                    style="height: 100px"></textarea>
-                                <label for="obs">Escreva sua solicitação detalhada</label>
-                            </div>
+                                <div class="form-floating">
+                                    <select class="form-select" formControlName="tipo" id="tipo"  form-field-check-invalid>
+                                        <option value="CORREÇÃO">CORREÇÃO</option>
+                                        <option value="CUSTOMIZAÇÃO">CUSTOMIZAÇÃO</option>
+                                        <option value="VISITA TÉCNICA">VISITA TÉCNICA</option>
+                                        <option value="TREINAMENTO ON-LINE">
+                                            TREINAMENTO ON-LINE
+                                        </option>
+                                        <option value="TREINAMENTO IN-LOCO">
+                                            TREINAMENTO IN-LOCO
+                                        </option>
+                                        <option value="SUPORTE/DUVIDA">SUPORTE/DUVIDA</option>
+                                        <option value="NOVO MÓDULO">NOVO MÓDULO</option>
+                                    </select>
+                                    <label for="tipo">Tipo</label>
+                                </div>
 
-                            <div class="mb-3">
-                                <app-upload-area label="Anexar"></app-upload-area>
-                            </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" formControlName="obs"  form-field-check-invalid
+                                        placeholder="Escreva sua solicitação detalhada" id="obs"
+                                        style="height: 100px"></textarea>
+                                    <label for="obs">Escreva sua solicitação detalhada</label>
+                                </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg">Lançar</button>
-                        </form>
+                                <div class="mb-3">
+                                    <label for="file" class="form-label">Anexar documento</label>
+                                    <input class="form-control" (change)="onFileSelected($event)" formControlName="file" type="file" id="file"  form-field-check-invalid>
+                                </div>
+
+                                <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg">Lançar</button>
+                            </form>
+                        </ng-template>
                     </div>
                 </div>
             </div>
