@@ -11,7 +11,6 @@ export class MainFooterComponent {
 
   constructor(private authService: AuthService) {
     this.authService.contextAuth.subscribe((res) => {
-      console.log(res)
       this.auth = res;
     })
   }

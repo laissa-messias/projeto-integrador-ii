@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RequestsService } from '../../../services/requests.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-system-release',
@@ -13,8 +14,13 @@ export class SystemReleaseComponent {
   form!: FormGroup;
   loading: boolean = true;
   systems: any[] = [];
+  token: string = '';
 
-  constructor(private fb: FormBuilder, private router: Router,  private toast: ToastrService, private requestsService: RequestsService) {
+  private modalRef: NgbModalRef | null = null;
+  @ViewChild('tokenModal')
+  tokenModal!: TemplateRef<any>;
+
+  constructor(private fb: FormBuilder, private router: Router,  private toast: ToastrService, private requestsService: RequestsService,  private modalService: NgbModal) {
     this.form = this.fb.group({
       sis: ['', [Validators.required]],
       chave: ['', [Validators.required]],
@@ -41,12 +47,31 @@ export class SystemReleaseComponent {
     })
   }
 
+  openTokenModal(): void {
+     this.modalRef =  this.modalService.open(this.tokenModal, {
+      centered: true,
+      backdrop: 'static',
+      keyboard: false,
+    });
+  }
+
+  closeTokenModal(): void {
+    this.modalRef?.close()
+  }
+
   submitRelease():void {
-    this.requestsService.systemRealease(this.form.value).subscribe((res) => {
+    const formData = new FormData();
+  
+    formData.append('sis', this.form.get('sis')?.value);
+    formData.append('chave', this.form.get('chave')?.value);
+
+    this.loading = true;
+    this.requestsService.systemRealease(formData).subscribe((res) => {
       switch (res.code) {
         case 200:
           this.toast.success('Máquina liberada com sucesso!')
-          this.router.navigate(['/home'])
+          this.token = res.chave;
+          this.openTokenModal()
           break;
 
         case 400:
@@ -58,6 +83,8 @@ export class SystemReleaseComponent {
       }
     }, (error) => {
       this.toast.error(error)
+    }).add(() => {
+      this.loading = false;
     })
   }
 }

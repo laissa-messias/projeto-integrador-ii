@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { provideHttpClient } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const angularModules = [
   BrowserModule,
@@ -28,7 +29,7 @@ const applicationModules = [
     AppComponent
   ],
   imports: [
-    angularModules, applicationModules
+    angularModules, applicationModules, NgbModule
   ],
   bootstrap: [AppComponent],
   providers: [provideHttpClient()]

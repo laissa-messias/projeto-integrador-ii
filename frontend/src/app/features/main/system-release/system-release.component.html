@@ -15,9 +15,10 @@
                             <app-loading-spinner></app-loading-spinner>
                         </div>
                         <ng-template #formContainer>
-                            <form [formGroup]="form" (ngSubmit)="submitRelease()" class="d-flex flex-column gap-3 p-4" focus-invalid>
+                            <form [formGroup]="form" (ngSubmit)="submitRelease()" class="d-flex flex-column gap-3 p-4"
+                                focus-invalid>
                                 <div class="form-floating">
-                                    <select class="form-select" formControlName="sis" id="sis"  form-field-check-invalid>
+                                    <select class="form-select" formControlName="sis" id="sis" form-field-check-invalid>
                                         <option value="" selected>SELECIONE</option>
                                         <option *ngFor="let system of systems" [value]="system.codigo">
                                             {{system.nome}}
@@ -27,15 +28,14 @@
                                 </div>
 
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="chave" formControlName="chave"  form-field-check-invalid
-                                        placeholder="Chave para liberação">
+                                    <input type="text" class="form-control" id="chave" formControlName="chave"
+                                        form-field-check-invalid placeholder="Chave para liberação">
                                     <label for="chave">Chave para liberação</label>
 
                                 </div>
 
-                               
-
-                                <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg">Lançar</button>
+                                <button type="submit" [disabled]="!form.valid"
+                                    class="btn btn-primary btn-lg">Lançar</button>
                             </form>
                         </ng-template>
                     </div>
@@ -44,3 +44,15 @@
         </div>
     </section>
 </div>
+
+<ng-template #tokenModal>
+    <div class="modal-header">
+        <h3 class="text-secondary">Chave de Liberação</h3>
+        <button (click)="closeTokenModal()" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <label class="mb-2">Copie e cole no sistema</label>
+        <input class="form-control" [value]="token" />
+    </div>
+</ng-template>

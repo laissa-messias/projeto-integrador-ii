@@ -32,7 +32,7 @@ export class RequestsService {
     return this.http.post<any>(`${environment.apiUrl}inclui_sol2/${this.auth.idcli}/1`, formData);
   }
 
-  systemRealease(formData: any):Observable<any> {
+  systemRealease(formData: FormData):Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}liberar_maquina/${this.auth.idcli}/1`, formData);
   }
 }
